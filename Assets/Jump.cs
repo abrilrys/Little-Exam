@@ -11,6 +11,8 @@ public class Jump: MonoBehaviour
     private bool isDead = false;
     private Rigidbody2D rb2d;
 
+    public delegate void MyFirstEvent();
+    public static event MyFirstEvent OnDead;
 
     // Use this for initialization
     void Start()
@@ -42,7 +44,8 @@ public class Jump: MonoBehaviour
         {
             rb2d.velocity = Vector2.zero;
             isDead = true;
-            GameControl.instance.Died();
+            OnDead();
+            //GameControl.instance.Died();
         }
 
       
